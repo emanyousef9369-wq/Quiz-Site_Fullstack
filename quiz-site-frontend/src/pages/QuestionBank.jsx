@@ -1,8 +1,8 @@
+import { API_BASE_URL } from "../api";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./QuestionBank.css";
 
-const API_BASE_URL = "http://localhost:5000/api";
 
 function QuestionBank() {
   const navigate = useNavigate();

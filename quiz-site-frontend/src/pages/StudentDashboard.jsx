@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../api";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./StudentDashboard.css";
@@ -27,7 +28,7 @@ function StudentDashboard() {
       try {
         const token = localStorage.getItem("token");
 
-        const response = await fetch("http://localhost:5000/api/quizzes", {
+        const response = await fetch(`${API_BASE_URL}/quizzes`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

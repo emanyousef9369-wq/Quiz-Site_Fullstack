@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../api";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./MyResults.css";
@@ -12,7 +13,7 @@ function MyResults() {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/results", {
+        const response = await fetch(`${API_BASE_URL}/results`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -41,7 +42,7 @@ function MyResults() {
     if (!window.confirm("Are you sure you want to delete this result?")) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/results/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/results/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

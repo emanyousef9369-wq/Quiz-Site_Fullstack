@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../api";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import mockData from "../mockdata.json";
@@ -50,7 +51,7 @@ function TakeQuiz() {
   useEffect(() => {
     const fetchQuizDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/quizzes/${quizId}`, {
+        const response = await fetch(`${API_BASE_URL}/quizzes/${quizId}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -161,7 +162,7 @@ function TakeQuiz() {
     }));
 
     try {
-      const response = await fetch(`http://localhost:5000/api/quizzes/${quizId}/submit`, {
+      const response = await fetch(`${API_BASE_URL}/quizzes/${quizId}/submit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
