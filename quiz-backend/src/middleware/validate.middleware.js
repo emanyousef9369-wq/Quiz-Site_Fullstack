@@ -1,0 +1,17 @@
+import { AppError } from "../utils/AppError.js";
+
+export const validate = (schema, source = "body") => (req, res, next) => {
+  const { error, value } = schema.validate(req[source], {
+    abortEarly: false,
+    allowUnknown: true, // يمنع رمي أخطاء للمفاتيح الزائدة
+    stripUnknown: false, // يحافظ على الداتا المبعوثة كاملة
+  });
+
+  if (error) {
+    const message = error.details.map((d) => d.message).join(", ");
+    return next(new AppError(message, 400));
+  }
+
+  req[source] = value;
+  next();
+};
