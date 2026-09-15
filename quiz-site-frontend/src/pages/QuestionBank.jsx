@@ -189,13 +189,13 @@ function QuestionBank() {
       return;
     }
 
-    // 1. معالجة وتجهيز مصفوفة الخيارات
+  
     const choicesArray = formData.options
       .split(",")
       .map((c) => c.trim())
       .filter(Boolean);
 
-    // 2. تنظيف الإجابة المحددة ومطابقتها مع الخيارات
+   
     let selectedAnswer = (formData.correctAnswer || "").trim();
 
     const matchedChoice = choicesArray.find(
@@ -208,7 +208,7 @@ function QuestionBank() {
       selectedAnswer = choicesArray[0];
     }
 
-    // 3. تجهيز الـ Payload المقبول للـ API
+   
     const payload = {
       statement: formData.question.trim(),
       question: formData.question.trim(),
