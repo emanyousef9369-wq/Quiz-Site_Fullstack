@@ -3,8 +3,8 @@ import { AppError } from "../utils/AppError.js";
 export const validate = (schema, source = "body") => (req, res, next) => {
   const { error, value } = schema.validate(req[source], {
     abortEarly: false,
-    allowUnknown: true, // يمنع رمي أخطاء للمفاتيح الزائدة
-    stripUnknown: false, // يحافظ على الداتا المبعوثة كاملة
+    allowUnknown: true, 
+    stripUnknown: false,
   });
 
   if (error) {
