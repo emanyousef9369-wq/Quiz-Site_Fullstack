@@ -21,7 +21,7 @@ export const quizService = {
 
     for (const entry of questions) {
       if (isExistingQuestionEntry(entry)) {
-        // استخراج معرّف السؤال بأي شكل أُرسل به من الفرونت إند
+        
         const targetId = typeof entry === "string" ? entry : (entry.questionId || entry._id || entry.id);
 
         const existing = await questionRepository.findById(targetId);
@@ -30,7 +30,7 @@ export const quizService = {
         }
         questionIds.push(existing._id);
       } else {
-        // إنشاء سؤال جديد فقط إذا لم يرسل الفرونت إند معرّفاً للسؤال (ID)
+     
         const created = await questionRepository.create({
           statement: entry.statement || entry.question || entry.title,
           choices: entry.choices || entry.options || [],
@@ -116,7 +116,7 @@ async submitAnswers({ quizId, answers, studentId }) {
     const question = questionsById.get(qId);
 
     if (question) {
-      // تنظيف النصوص من الفراغات الزائدة قبل المقارنة
+    
       const formattedUserAns = String(userAnswer || "").trim().toLowerCase();
       const formattedCorrectAns = String(question.correctAnswer || "").trim().toLowerCase();
 
@@ -139,7 +139,7 @@ async submitAnswers({ quizId, answers, studentId }) {
   const percentage = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0;
   const wrong = totalQuestions - score;
 
-  // حفظ النتيجة في الداتابيز
+  
   const savedResult = await resultRepository.create({
     studentId,
     quizId: quiz._id,
